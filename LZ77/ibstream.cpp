@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <vector>
 
@@ -49,6 +51,14 @@ public:
 		bool b = get_bit();
 		check_end();
 		return b;
+	}
+
+	char read_byte() {
+		char res = 0;
+		for (int i = 0; i < 8; i++) {
+			res += read() << i;
+		}
+		return res;
 	}
 
 	friend bool operator>>(ibstream& os, bool &bit);

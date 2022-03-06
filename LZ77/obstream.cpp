@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <vector>
 
@@ -5,7 +7,7 @@ using namespace std;
 
 class obstream {
 	ostream* stream;
-	char bit_buffer = 25;
+	char bit_buffer = 0;
 	char buffer_size = 0;
 	char first_byte = 0;
 	bool is_first_byte = true;
@@ -31,10 +33,7 @@ public:
 			throw invalid_argument("Null stream");
 		this->stream = stream;
 		set_offset();
-	}
-
-	~obstream() {
-		flush();
+		stream->put((char)0);
 	}
 
 	obstream& put(const char bit) {
